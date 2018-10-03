@@ -10,20 +10,27 @@ import { CompanyService } from '../company.service';
 export class CompanyEditComponent implements OnInit {
 
   company$: AngularFireObject<any[]>;
-  constructor(private companyServices: CompanyService) {
+  connetede:any;
+  constructor(private companyServices: CompanyService,private db: AngularFireDatabase) {
     this.company$ = this.companyServices.company$;
 
   }
-
-  ngOnInit() {
-    // this.getdata();
-
+  ngOnInit(){
+    this.connected();
   }
-  savedata() {
-    this.companyServices.saveCompany('company')
-  }
-  getdata() {
-
+  connected(){
+       const observabe = this.db.object('connected');
+    observabe
+     
+    .valueChanges().subscribe(
+      next =>{
+        this.connetede=next;
+      },
+      error =>{
+        console.log('error', error)
+      } 
+    
+    )
   }
 
 }
