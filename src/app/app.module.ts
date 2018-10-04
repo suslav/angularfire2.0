@@ -11,6 +11,7 @@ import {RouterModule} from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import{FormsModule} from '@angular/forms';  
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
+import { CompanyService } from './company/company.service';
 const fireAppconfig = {
     apiKey: "AIzaSyBDPv2-ic-wr1UkvlOoDochRxEJgH-ai1s",
     authDomain: "angularfire-d8151.firebaseapp.com",
@@ -40,7 +41,7 @@ const fireAppconfig = {
     MatButtonModule,
     MatToolbarModule
   ],
-  providers:  [],
+  providers:  [CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

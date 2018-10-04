@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
+
 import { CompanyService } from '../company.service';
 
 @Component({
@@ -10,27 +11,25 @@ import { CompanyService } from '../company.service';
 export class CompanyEditComponent implements OnInit {
 
   company$: AngularFireObject<any[]>;
-  connetede:any;
-  constructor(private companyServices: CompanyService,private db: AngularFireDatabase) {
+  connetede: any;
+  company:any;
+  constructor(private companyServices: CompanyService, private db: AngularFireDatabase) {
     this.company$ = this.companyServices.company$;
+    console.log(this.company$,'test');
 
   }
-  ngOnInit(){
-    this.connected();
+  ngOnInit() {
+    //this.connected();
   }
-  connected(){
-       const observabe = this.db.object('connected');
-    observabe
-     
-    .valueChanges().subscribe(
-      next =>{
-        this.connetede=next;
-      },
-      error =>{
-        console.log('error', error)
-      } 
-    
-    )
+  connected(company) {
+    // this.db.object('company').valueChanges().subscribe(items => {
+    //   this.company=items;
+    //   console.log(this.company);
+    //     });
+    this.company$.set(company)
+  }
+  editconnected(newcompany){
+ //this.company$.update({newcompany})
   }
 
 }
